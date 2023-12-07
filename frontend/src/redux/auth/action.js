@@ -26,6 +26,7 @@ export function loginUser(paramObj) {
     try {
       let res = await axios.post(`${URL}/login`, paramObj);
       console.log(`login user`, res.data);
+      localStorage.setItem("token", res.data.token);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: { token: res.data.token },
@@ -41,6 +42,7 @@ export function logoutUser() {
   return async function (dispatch) {
     dispatch({ type: LOGIN_REQUEST });
     try {
+      localStorage.clear();
       dispatch({ type: LOGOUT_SUCCESS });
     } catch (error) {
       console.log(`logout`, error);

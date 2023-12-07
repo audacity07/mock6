@@ -15,8 +15,8 @@ export function postBlog(paramObj) {
   return async function (dispatch) {
     dispatch({ type: BLOG_REQUEST });
     try {
-      let token = useSelector((store) => store.authReducer.token);
-      await axios.post(`${URL}`, paramObj, {
+      let token = localStorage.getItem("token");
+      let res = await axios.post(`${URL}`, paramObj, {
         headers: {
           Authorization: token,
         },
@@ -34,14 +34,14 @@ export function getBlog(paramObj) {
   return async function (dispatch) {
     dispatch({ type: BLOG_REQUEST });
     try {
-      let token = useSelector((store) => store.authReducer.token);
+      let token = localStorage.getItem("token");
       console.log(`token in get blog`, token);
-      await axios.get(`${URL}`, paramObj, {
+      let res = await axios.get(`${URL}`, paramObj, {
         headers: {
           Authorization: token,
         },
       });
-      console.log(`all blogs`, res.data);
+      console.log(`all blogs`, res);
       dispatch({ type: BLOG_GET_SUCCESS, payload: res.data.blogs });
     } catch (error) {
       console.log(`all blogs`, error);
@@ -54,8 +54,8 @@ export function patchBlog(id, paramObj) {
   return async function (dispatch) {
     dispatch({ type: BLOG_REQUEST });
     try {
-      let token = useSelector((store) => store.authReducer.token);
-      await axios.patch(`${URL}/${id}`, paramObj, {
+      let token = localStorage.getItem("token");
+      let res = await axios.patch(`${URL}/${id}`, paramObj, {
         headers: {
           Authorization: token,
         },
@@ -73,8 +73,8 @@ export function deleteBlog(id) {
   return async function (dispatch) {
     dispatch({ type: BLOG_REQUEST });
     try {
-      let token = useSelector((store) => store.authReducer.token);
-      await axios.delete(`${URL}/${id}`, null, {
+      let token = localStorage.getItem("token");
+      let res = await axios.delete(`${URL}/${id}`, null, {
         headers: {
           Authorization: token,
         },
