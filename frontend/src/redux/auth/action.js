@@ -6,7 +6,7 @@ import {
 } from "./actionType";
 import axios from "axios";
 
-let URL = `http://localhost:4500/api/users`;
+let URL = `https://mock6be.onrender.com/api/users`;
 
 export function registerUser(paramObj) {
   return async function (dispatch) {

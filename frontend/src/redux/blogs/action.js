@@ -9,7 +9,7 @@ import {
 } from "./actionType";
 import axios from "axios";
 
-let URL = `http://localhost:4500/api/blogs`;
+let URL = `https://mock6be.onrender.com/api/blogs`;
 
 export function postBlog(paramObj) {
   return async function (dispatch) {
